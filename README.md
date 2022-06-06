@@ -1,2 +1,5 @@
 # SSENSE-Account-generator
-### SSENSE account gen using python requests
+## SSENSE account gen using python requests:
+
+  ###Supports:
+    
