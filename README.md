@@ -1,5 +1,6 @@
 # SSENSE-Account-generator
 SSENSE account gen using python requests
-  ### Supports:
-    Proxies
-    
+  ### Features:
+    Fully using requests
+    Catchall Support
+    Proxy Support
