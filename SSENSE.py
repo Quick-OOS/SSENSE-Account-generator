@@ -1,13 +1,17 @@
-import requests, random, threading, time, names
+import requests, random, threading, time, names, os
 from art import *
 from colorama import Fore, Back, Style, init
 init(autoreset=True)
 from datetime import date
 today = date.today()
 
+
 class Main:
 
     def __init__(self):
+
+        self.success = 0
+        self.errors = 0
 
         Art=text2art("SSENSE Account Generator")
         print(Fore.MAGENTA + Art + "\n")
@@ -28,6 +32,8 @@ class Main:
         self.amount = input("Enter the amount of accounts you want to generate: ")
         print(f"Generating {self.amount} account(s)...")
         time.sleep(1)
+
+        os.system(f'title SSENSE Account Generator | Total: {self.amount} | Success: {self.success} | Errors: {self.errors}')
 
         threads = []
         for _ in range(int(self.amount)):
@@ -76,6 +82,8 @@ class Main:
 
             if req.status_code == 200:
                 print(Fore.GREEN + f"Generated Account | {self.randomEmail} | {self.password}")
+                self.success += 1
+                os.system(f'title SSENSE Account Generator | Total: {self.amount} | Success: {self.success} | Errors: {self.errors}')
                 #Creates a txt file with the accounts and names the txt file with the site and date
                 self.fileName = "SSENSE" + "-" + today.strftime("%d-%H-%M-%S")
                 with open(f"Accounts/{self.fileName}.txt", "a") as f:
@@ -83,6 +91,8 @@ class Main:
                 print(f"Accounts saved to {self.fileName}.txt")
             else:
                 print(Fore.RED + "Error generating account")
+                self.errors += 1
+                os.system(f'title SSENSE Account Generator | Total: {self.amount} | Success: {self.success} | Errors: {self.errors}')
                 self.sleep(1)
                 self.generate()
         
