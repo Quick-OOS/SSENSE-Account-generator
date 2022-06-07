@@ -25,7 +25,6 @@ class Main:
                 #Count the number of lines
                 self.proxyCount = sum(1 for _ in f)
                 print(f"{self.proxyCount} proxies loaded")
-                #For every thread use a random proxy
         else:
             self.proxies = False
                
